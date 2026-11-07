@@ -1,0 +1,85 @@
+@baseUrl = http://localhost:5196
+@HostAddress = http://localhost:5246
+@Version = api/v1
+
+### ===== CATEGORY ENDPOINTS
+
+### Get All Categories
+GET {{HostAddress}}/{{Version}}/categories
+Accept: application/json
+
+### Get Category by ID
+GET {{HostAddress}}/{{Version}}/categories/1
+Accept: application/json
+
+### Create a New Category
+POST {{HostAddress}}/{{Version}}/categories
+Content-Type: application/json
+
+{
+  "name": "Combo Meals",
+  "description": "Paket hemat makanan dan minuman"
+}
+
+### Update an Existing Category
+PUT {{HostAddress}}/{{Version}}/categories/1
+Content-Type: application/json
+
+{
+  "name": "Food & Snacks",
+  "description": "Menu utama, ayam goreng, dan makanan ringan"
+}
+
+### Delete a Category
+DELETE {{HostAddress}}/{{Version}}/categories/2
+Accept: application/json
+
+### ====== MENU ENDPOINTS
+
+### Get All Menus
+GET {{HostAddress}}/{{Version}}/menus
+Accept: application/json
+
+### Get Menu by ID
+GET {{HostAddress}}/{{Version}}/menus/1
+Accept: application/json
+
+### Create a New Menu
+POST {{HostAddress}}/{{Version}}/menus
+Content-Type: application/json
+
+{
+  "categoryId": 1,
+  "name": "Zinger Burger",
+  "price": 35000,
+  "stock": 50,
+  "description": "Burger ayam fillet pedas dengan mayonnaise"
+}
+
+### Test Validation (Bad Request)
+POST {{HostAddress}}/{{Version}}/menus
+Content-Type: application/json
+
+{
+  "categoryId": 1,
+  "name": "Invalid Chicken",
+  "price": -10000,
+  "stock": -5,
+  "description": "Tes harga dan stok tidak boleh negatif"
+}
+
+### Update an Existing Menu
+PUT {{HostAddress}}/{{Version}}/menus/1
+Content-Type: application/json
+
+{
+  "categoryId": 1,
+  "name": "Original Chicken (Dada)",
+  "price": 23000,
+  "stock": 80,
+  "description": "Ayam goreng original bagian dada"
+}
+
+### Delete a Menu
+DELETE {{HostAddress}}/{{Version}}/menus/2
+Accept: application/json
